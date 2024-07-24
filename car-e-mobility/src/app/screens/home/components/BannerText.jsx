@@ -1,6 +1,11 @@
+import { useState } from 'react'
 import Mockup from '../../../../assets/images/mockup.png'
+import { useNavigate } from 'react-router-dom'
 
 function BannerText() {
+  const navigate = useNavigate()
+  const [serviceNumber, setServiceNumber] = useState('')
+
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center">
       <div className="w-full flex flex-row justify-center items-center relative h-full top-[-50px] max-w-screen overflow-hidden">
@@ -27,12 +32,15 @@ function BannerText() {
                 </p>
                 <div className="flex flex-row bg-white shadow-lg rounded-full justify-between h-14 border border-zinc-50">
                   <button
+                    onClick={() => navigate(`/services/${serviceNumber}`)}
                     type="button"
                     className="bg-red-500  hover:bg-red-800 duration-300 ease-in-out text-white rounded-full px-8 py-4 text-sm font-medium"
                   >
                     Buscar
                   </button>
                   <input
+                    value={serviceNumber}
+                    onChange={e => setServiceNumber(e.target.value)}
                     className="rounded-l-full pl-6 py-2 flex flex-1 border-none focus:outline-none focus:ring-0 focus:border-transparent bg-transparent"
                     placeholder="Ingresa tu número de servicio"
                     type="text" />

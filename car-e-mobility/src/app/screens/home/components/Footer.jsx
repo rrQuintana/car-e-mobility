@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom"
+
 function Footer() {
+  const navigate = useNavigate()
+
   return (
     <div className='bg-zinc-900 py-12 flex justify-center items-center'>
       <div className="w-5/6 flex flex-row justify-between">
@@ -11,22 +15,22 @@ function Footer() {
         <div className="w-1/2 flex flex-row justify-between">
           <div className="space-y-3">
             <p className='font-semibold text-white text-3xl'>Empresa</p>
-            <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100'>
+            <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100  cursor-pointer'>
               Inicio
             </p>
-            <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100'>
+            <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100  cursor-pointer'>
               Nosotros
             </p>
-            <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100'>
+            <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100  cursor-pointer'>
               Contacto
             </p>
-            <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100'>
+            <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100  cursor-pointer'>
               Términos y condiciones
             </p>
-            <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100'>
+            <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100  cursor-pointer'>
               Política de privacidad
             </p>
-            <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100'>
+            <p onClick={()=>navigate('login')} className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100 cursor-pointer'>
               Colaboradores
             </p>
           </div>

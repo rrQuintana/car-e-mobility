@@ -1,9 +1,9 @@
 import AnimatedPage from './AnimatedPage'
 
-function Layout({ children }) {
+function Layout({ children, bg = 'bg-white' }) {
   return (
-    <AnimatedPage cssProperty="justify-center bg-white items-center pt-10 w-full bg-green-500 flex flex-1">
-      <div className='w-full h-full mt-5'>
+    <AnimatedPage cssProperty={`justify-center ${bg} items-center pt-10 w-full flex flex-1 min-h-screen`}>
+      <div className='w-full min-h-full mt-5'>
         {children}
       </div>
     </AnimatedPage>
