@@ -10,5 +10,22 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/c597ca9b0c.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.addEventListener("scroll", function () {
+        const scrollY = window.scrollY || window.pageYOffset;
+        const targetPixels = 100;
+        const navBar = document.getElementById("NavBar");
+
+        if (scrollY >= targetPixels) {
+          navBar.classList.add("shadow-lg");
+        } else {
+          navBar.classList.remove("shadow-lg");
+        }
+      });
+    </script>
   </body>
 </html>
