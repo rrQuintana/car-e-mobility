@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.carousel-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.carousel-row {
+  display: inline-block;
+  animation: scroll 40s linear infinite;
+}
