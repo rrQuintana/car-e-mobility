@@ -10,6 +10,8 @@ import EditService from "../screens/admin/EditService"
 import PrivacyPolicy from "../screens/home/PrivacyPolicy"
 
 function Router() {
+  const user = localStorage.getItem('token')
+  
   return (      
     <BrowserRouter>
       <Routes>
@@ -17,9 +19,9 @@ function Router() {
         <Route path="/aviso-privacidad" element={<PrivacyPolicy />}  />
         <Route path="/services/:id" element={<Service />}  />
         <Route path="/login" element={<LoginPage />}  />
-        {localStorage.getItem('token') && <Route path="/admin" element={<AdminPage />}  /> }
-        {localStorage.getItem('token') && <Route path="/admin/add-service" element={<AddService />}  /> }
-        {localStorage.getItem('token') && <Route path="/admin/edit-service/:id" element={<EditService />}  /> }
+        {user && <Route path="/admin" element={<AdminPage />}  /> }
+        {user && <Route path="/admin/add-service" element={<AddService />}  /> }
+        {user && <Route path="/admin/edit-service/:id" element={<EditService />}  /> }
         <Route path="/about" element={<About />}  />
         <Route path="/warranty" element={<Warranty />}  />
       </Routes>
