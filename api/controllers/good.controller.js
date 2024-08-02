@@ -17,7 +17,7 @@ goodRouter.get('/:id', async (request, response) => {
 
 //Create a new good
 goodRouter.post('/', middleware.userExtractor, async (request, response) => {
-  const { name, description, user, marca, modelo, anio, version, placas, servicio, noServicio, fechaYHoraRecogida, fechaYHoraEntrega, lugarRecogida, lugarEntrega } = request.body;
+  const { name, description, user, marca, modelo, anio, version, placas, servicio, fechaYHoraRecogida, fechaYHoraEntrega, lugarRecogida, lugarEntrega } = request.body;
 
   let savedPictures = [];
 
@@ -31,7 +31,6 @@ goodRouter.post('/', middleware.userExtractor, async (request, response) => {
     version,
     placas,
     servicio,
-    noServicio,
     fechaYHoraRecogida,
     fechaYHoraEntrega,
     lugarRecogida,
@@ -50,9 +49,8 @@ goodRouter.post('/', middleware.userExtractor, async (request, response) => {
 goodRouter.put('/:id', middleware.userExtractor, async (request, response) => {
 
   const id = request.params.id;
-  const good = await Good.findById(id);
 
-  const { name, description, user, marca, modelo, anio, version, placas, servicio, noServicio, fechaYHoraRecogida, fechaYHoraEntrega, lugarRecogida, lugarEntrega } = request.body;
+  const { name, description, estatus, user, marca, modelo, anio, version, placas, servicio, fechaYHoraRecogida, fechaYHoraEntrega, lugarRecogida, lugarEntrega } = request.body;
 
   const goodToUpdate = {
     name,
@@ -60,18 +58,18 @@ goodRouter.put('/:id', middleware.userExtractor, async (request, response) => {
     user,
     marca,
     modelo,
+    estatus,
     anio,
     version,
     placas,
     servicio,
-    noServicio,
     fechaYHoraRecogida,
     fechaYHoraEntrega,
     lugarRecogida,
     lugarEntrega
   };
 
-  const updatedGood = await Good.findByIdAndUpdate(id, goodToUpdate, { new: true });
+  const updatedGood = await Good.findByIdAndUpdate(id, goodToUpdate);
 
   response.status(200).json(updatedGood);
 });
@@ -79,17 +77,9 @@ goodRouter.put('/:id', middleware.userExtractor, async (request, response) => {
 //Delete a good
 goodRouter.delete('/:id', middleware.userExtractor, async (request, response) => {
   const id = request.params.id;
-  const good = await Good.findById(id);
 
-  const isAdmin = request.user.roles.includes('admin');
-  const isOwner = good.user.toString() === request.user._id.toString();
-
-  if (isAdmin || isOwner) {
-    await Good.findByIdAndDelete(id);
-    return response.status(204).end();
-  }
-
-  response.status(401).json({ error: 'Unauthorized' });
+  await Good.findByIdAndDelete(id);
+  return response.status(204).end();
 });
 
 module.exports = goodRouter;

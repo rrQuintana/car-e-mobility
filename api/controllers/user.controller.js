@@ -14,6 +14,7 @@ userRouter.post('/', async (request, response) => {
   const passwordHash = await bcrypt.hash(body.password, saltRounds);
 
   const user = new User({
+    username: body.email,
     name: body.name,
     lastName: body.lastName,
     email: body.email,
@@ -44,7 +45,6 @@ userRouter.put('/:id', middleware.userExtractor, async (request, response) => {
   const body = request.body;
 
   const user = {
-    username: body.username,
     name: body.name,
     lastName: body.lastName,
     email: body.email,

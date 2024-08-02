@@ -52,7 +52,7 @@ function HowItWorks() {
               />
             </div>
             <div className="w-1/2 h-[500px] ml-5 shadow-lg">
-              <img src={'https://images.unsplash.com/photo-1643700973089-baa86a1ab9ee?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} className='w-full h-full object-cover bg-slate-500' alt="" />
+              <img src={'https://images.unsplash.com/photo-1597766325363-f5576d851d6a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} className='w-full h-full object-cover bg-slate-500 rounded-lg' alt="" />
             </div>
           </div>
 

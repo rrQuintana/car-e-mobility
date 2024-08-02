@@ -15,7 +15,7 @@ function NavBar() {
           >
             Pre-registro
           </button>
-          <buttona
+          <button
             type="button"
             aria-expanded="false"
             aria-controls="navbar-sticky"
@@ -26,7 +26,7 @@ function NavBar() {
             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
               <path stroke="currentColor" d="M1 1h15M1 7h15M1 13h15" />
             </svg>
-          </buttona>
+          </button>
         </div>
         <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
           <ul className="flex flex-col md:flex-row space-y-3 md:space-y-0 items-center space-x-0 md:space-x-2">

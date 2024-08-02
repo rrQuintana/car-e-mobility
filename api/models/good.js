@@ -39,24 +39,22 @@ const goodSchema = new mongoose.Schema({
   },
   noServicio: {
     type: String,
-    required: true
   },
   fechaYHoraRecogida: {
     type: String,
-    required: true
   },
   fechaYHoraEntrega: {
     type: String,
   },
   lugarRecogida: {
     type: String,
-    required: true
   },
   lugarEntrega: {
     type: String,
   },
   estatus: {
-    type: String
+    type: Number,
+    default: 0
   }
 }, { timestamps: true })
 

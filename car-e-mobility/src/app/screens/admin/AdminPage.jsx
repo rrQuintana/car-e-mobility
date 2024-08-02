@@ -18,9 +18,24 @@ function AdminPage() {
     fetchServices()
   }, [])
 
+  const handleDelete = async (id) => {
+    confirm('¿Estás seguro de eliminar este servicio?') 
+    && await fetch(`http://localhost:3001/api/goods/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }
+    })
+
+    fetchServices()    
+
+    alert('Servicio eliminado correctamente')
+  }
+
 
   return (
-    <Layout bg="bg-zinc-200">
+    <div className="bg-zinc-200 pt-12">
       <NavBar />
       <div className="p-14 flex flex-1">
         <div className="w-full bg-white p-8 rounded-lg space-y-10">
@@ -37,6 +52,9 @@ function AdminPage() {
           <table className="min-w-full divide-y divide-zinc-200">
             <thead className="bg-zinc-100">
               <tr>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                  ID servicio
+                </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
                   Nombre
                 </th>
@@ -50,9 +68,6 @@ function AdminPage() {
                   Fecha de creación
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
-                  ID
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
                   Acciones
                 </th>
               </tr>
@@ -60,14 +75,17 @@ function AdminPage() {
             <tbody className="bg-white divide-y divide-zinc-200">
               {services.map(service => (
                 <tr key={service.id}>
+                  <td className="px-6 py-4 whitespace-nowrap text-xs font-medium text-zinc-900">{service.id}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-zinc-900">{service.name}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-zinc-900">{service.placas}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-500">{service.servicio}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-500">{moment(service.createdAt).format('DD/MM/YYYY')}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-xs font-medium text-zinc-900">{service.id}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-500">
-                    <button className="bg-zinc-800 text-white px-3 py-2 rounded-md hover:bg-zinc-700">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-500 space-x-3">
+                    <button onClick={() => navigate(`/admin/edit-service/${service.id}`)} className="bg-zinc-800 text-white px-3 py-2 rounded-md hover:bg-zinc-700">
                       Ver
+                    </button>
+                    <button onClick={() => handleDelete(service.id)} className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-zinc-700">
+                      Eliminar
                     </button>
                   </td>
                 </tr>
@@ -77,7 +95,7 @@ function AdminPage() {
 
         </div>
       </div>
-    </Layout>
+    </div>
   )
 }
 

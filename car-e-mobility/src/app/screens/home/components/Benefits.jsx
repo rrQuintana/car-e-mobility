@@ -1,4 +1,4 @@
-import CariImage from '../../../../assets/images/carimage.webp'
+import CariImage from '../../../../assets/images/25.jpg'
 
 const Benefit = ({ title, description }) => {
   return (

@@ -48,61 +48,71 @@ function Service() {
                 </div>
                 <div>
                   <h1 className='text-lg font-semibold'>Número de servicio:</h1>
-                  <p>{service.noServicio}</p>
+                  <p>{service.id}</p>
                 </div>
                 <div>
                   <h1 className='text-lg font-semibold'>Fecha y hora de recogida:</h1>
-                  <p>{service.fechaYHoraRecogida}</p>
+                  <p>{service.fechaYHoraRecogida !== '' ? new Date(service.fechaYHoraRecogida).toLocaleString() : 'Aún sin asignar'}</p>
                 </div>
                 <div>
                   <h1 className='text-lg font-semibold'>Fecha y hora de entrega:</h1>
-                  <p>{service.fechaYHoraEntrega}</p>
+                  <p>{service.fechaYHoraEntrega !== '' ? new Date(service.fechaYHoraEntrega).toLocaleString() : 'Aún sin asignar'}</p>
                 </div>
                 <div>
                   <h1 className='text-lg font-semibold'>Lugar de recogida:</h1>
-                  <p>{service.lugarRecogida}</p>
+                  <p>{service.lugarRecogida !== '' ? service.lugarRecogida : 'Aún sin asignar'}</p>
                 </div>
                 <div>
                   <h1 className='text-lg font-semibold'>Lugar de entrega:</h1>
-                  <p>{service.lugarEntrega}</p>
+                  <p>{service.lugarEntrega !== '' ? service.lugarEntrega : 'Aún sin asignar'}</p>
                 </div>
               </div>
             )
           }
         </div>
-        <div className="flex flex-row border-[5px] border-transparent border-t-red-500 w-3/5 justify-between mx-auto">
-          <div className="h-6 w-6 aspect-square bg-red-500 rounded-full mt-[-15px] ml-[-20px]">
-            <div className="mt-12 w-28 ml-[-45px] flex flex-col space-y-3 items-center justify-center">
-              <i className="fa-regular fa-clock text-center text-5xl text-red-500"></i>
-              <p className="text-sm text-center">Tu servicio fue asignado</p>
-            </div>
-          </div>
-          <div className="h-6 w-6 aspect-square bg-red-500 rounded-full mt-[-15px] mr-[-20px]">
-            <div className="mt-12 w-28 ml-[-45px] flex flex-col space-y-3 items-center justify-center">
-              <i className="fa-solid fa-car-rear text-center text-5xl text-red-500"></i>
-              <p className="text-sm text-center">Tu auto fue recolectado</p>
-            </div>
-          </div>
-          <div className="h-6 w-6 aspect-square bg-red-500 rounded-full mt-[-15px] mr-[-20px]">
-            <div className="mt-12 w-28 ml-[-45px] flex flex-col space-y-3 items-center justify-center">
-              <img src={CarELogo} alt="Car-E Logo" className="w-24 mt-[-25px] mb-[-25px]" />
-              <p className="text-sm text-center mt-[-50px]">Tu auto ingresó al punto Car-e</p>
-            </div>
-          </div>
-          <div className="h-6 w-6 aspect-square bg-red-500 rounded-full mt-[-15px] mr-[-20px]">
-            <div className="mt-12 w-28 ml-[-45px] flex flex-col space-y-3 items-center justify-center">
-              <i className="fa-solid fa-circle-check text-center text-5xl text-red-500"></i>
-              <p className="text-sm text-center">Tu auto está listo para entrega</p>
-            </div>
-          </div>
-          <div className="h-6 w-6 aspect-square bg-red-500 rounded-full mt-[-15px] mr-[-20px]">
+        <div className="flex flex-row border-[5px] border-transparent w-3/5 mx-auto">
+                  <div className="h-6 w-6 aspect-square bg-red-500 rounded-full mt-[-10px] ml-[-20px] z-20">
+                    <div className="mt-12 w-28 ml-[-45px] flex flex-col space-y-3 items-center justify-center">
+                      <i className="fa-regular fa-clock text-center text-5xl text-red-500"></i>
+                      <p className="text-sm text-center">Tu servicio fue asignado</p>
+                    </div>
+                  </div>
+                  <div className={`flex flex-1 h-1 ${(service.estatus > 0 && service.estatus >= 1) ? 'bg-red-500' : 'bg-zinc-200'}`}></div>
+                  <div className={`h-6 w-6 aspect-square ${(service.estatus > 0 && service.estatus >= 1) ? 'bg-red-500' : 'bg-zinc-200'} rounded-full mt-[-10px] mr-[-20px] z-20`}>
+                    <div className="mt-12 w-28 ml-[-45px] flex flex-col space-y-3 items-center justify-center">
+                      <i className={`fa-solid fa-car-rear text-center text-5xl ${(service.estatus > 0 && service.estatus >= 1) ? 'text-red-500' : 'text-zinc-500'}`}></i>
+                      <p className="text-sm text-center">Tu auto fue recolectado</p>
+                    </div>
+                  </div>
 
-            <div className="mt-12 w-28 ml-[-45px] flex flex-col space-y-3 items-center justify-center">
-              <i className="fa-solid fa-house text-center text-5xl text-red-500"></i>
-              <p className="text-sm text-center">Tu auto fue entregado</p>
-            </div>
-          </div>
-        </div>
+                  <div className={`flex flex-1 h-1 ${(service.estatus > 0 && service.estatus >= 2) ? 'bg-red-500' : 'bg-zinc-200'} relative`}>
+                  </div>
+                  <div className={`h-6 w-6 aspect-square ${(service.estatus > 0 && service.estatus >= 2) ? 'bg-red-500' : 'bg-zinc-200'} rounded-full mt-[-10px] mr-[-20px] z-20`}>
+                    <div className="mt-12 w-28 ml-[-45px] flex flex-col space-y-3 items-center justify-center">
+                      <img src={CarELogo} alt="Car-E Logo" className={`w-24 mt-[-25px] mb-[-25px] ${(service.estatus > 0 && service.estatus >= 2) ? '' : 'grayscale'} `} />
+                      <p className="text-sm text-center mt-[-50px]">Tu auto ingresó al punto Car-e</p>
+                    </div>
+                  </div>
+
+                  <div className={`flex flex-1 h-1 ${(service.estatus > 0 && service.estatus >= 3) ? 'bg-red-500' : 'bg-zinc-200'} relative`}>
+                  </div>
+                  <div className={`h-6 w-6 aspect-square ${(service.estatus > 0 && service.estatus >= 3) ? 'bg-red-500' : 'bg-zinc-200'} rounded-full mt-[-10px] mr-[-20px] z-20`}>
+                    <div className="mt-12 w-28 ml-[-45px] flex flex-col space-y-3 items-center justify-center">
+                    <i className={`fa-solid fa-circle-check text-center text-5xl ${(service.estatus > 0 && service.estatus >= 3) ? 'text-red-500' : 'text-zinc-500'}`}></i>
+                    <p className="text-sm text-center">Tu auto está listo para entrega</p>
+                    </div>
+                  </div>
+
+                  <div className={`flex flex-1 h-1 ${(service.estatus > 0 && service.estatus >= 4) ? 'bg-red-500' : 'bg-zinc-200'} relative`}>
+                  </div>
+                  <div className={`h-6 w-6 aspect-square ${(service.estatus > 0 && service.estatus >=4) ? 'bg-red-500' : 'bg-zinc-200'} rounded-full mt-[-10px] mr-[-20px] z-20 relative`}>
+                    <div className="mt-12 w-28 ml-[-45px] flex flex-col space-y-3 items-center justify-center">
+                    <i className={`fa-solid fa-house text-center text-5xl ${(service.estatus > 0 && service.estatus >=4) ? 'text-red-500' : 'text-zinc-500'}`}></i>
+                      <p className="text-sm text-center">Tu auto fue entregado</p>
+                    </div>
+                  </div>
+
+                </div>
       </div>
     </Layout>
   )
