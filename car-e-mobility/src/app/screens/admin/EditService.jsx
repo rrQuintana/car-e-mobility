@@ -11,7 +11,7 @@ function EditService() {
   const [service, setService] = useState({})
 
   const fetchService = async () => {
-    const response = await fetch(`http://localhost:3001/api/goods/${id}`)
+    const response = await fetch(`http://https://car-e-mobility.onrender.com//api/goods/${id}`)
     const data = await response.json()
     setService(data)
   }
@@ -44,7 +44,7 @@ function EditService() {
               lugarEntrega: service.lugarEntrega
             }}
             onSubmit={async (values) => {
-              const response = await fetch(`http://localhost:3001/api/goods/${id}`, {
+              const response = await fetch(`http://https://car-e-mobility.onrender.com//api/goods/${id}`, {
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
