@@ -10,7 +10,7 @@ function Service() {
   const [service, setService] = useState({})
 
   const fetchService = async () => {
-    const response = await fetch(`http://https://car-e-mobility.onrender.com//api/goods/${id}`)
+    const response = await fetch(`https://car-e-mobility.onrender.com/api/goods/${id}`)
     const data = await response.json()
     setService(data)
   }

@@ -9,7 +9,7 @@ function AdminPage() {
   const [services, setServices] = useState([])
 
   const fetchServices = async () => {
-    const response = await fetch('http://https://car-e-mobility.onrender.com//api/goods')
+    const response = await fetch('https://car-e-mobility.onrender.com/api/goods')
     const data = await response.json()
     setServices(data)
   }
@@ -20,7 +20,7 @@ function AdminPage() {
 
   const handleDelete = async (id) => {
     confirm('¿Estás seguro de eliminar este servicio?') 
-    && await fetch(`http://https://car-e-mobility.onrender.com//api/goods/${id}`, {
+    && await fetch(`https://car-e-mobility.onrender.com/api/goods/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

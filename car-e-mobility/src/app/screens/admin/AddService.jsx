@@ -110,7 +110,7 @@ function AddService() {
             }}
             onSubmit={async (values) => {
               try {
-                const response = await fetch('http://https://car-e-mobility.onrender.com//api/goods', {
+                const response = await fetch('https://car-e-mobility.onrender.com/api/goods', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
