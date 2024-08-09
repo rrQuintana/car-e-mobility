@@ -5,22 +5,20 @@ function Footer() {
 
   return (
     <div className='bg-zinc-900 py-12 flex justify-center items-center'>
-      <div className="w-5/6 flex flex-row justify-between">
+      <div className="w-5/6 flex flex-col md:flex-row justify-between space-y-12 md:space-y-0">
         <div className="space-y-3">
-          <p className='text-center font-semibold text-white text-5xl'>Car-e Mobility.</p>
-          <p>
-            <span className='text-white'>© 2024 Car-e Mobility. </span>
-          </p>
+          <p className='text-center font-semibold text-white text-5xl md:text-4xl lg:text-5xl text-center md:text-left'>Car-e Mobility.</p>
+          <p className='text-white text-center md:text-left'>© 2024 Car-e Mobility. </p>
         </div>
-        <div className="w-1/2 flex flex-row justify-between">
+        <div className="w-full md:w-2/3 lg:w-1/2 flex flex-col justify-center md:flex-row md:justify-between space-y-12 md:space-y-0">
           <div className="space-y-3">
             <p className='font-semibold text-white text-3xl'>Empresa</p>
-            <p  onClick={() => navigate('/')} className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100  cursor-pointer'>
+            <p onClick={() => navigate('/')} className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100  cursor-pointer'>
               Inicio
             </p>
             <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100  cursor-pointer'>
               <a href="mailto:contacto@car-e-mobility.com">
-              Contacto
+                Contacto
               </a>
             </p>
             <p onClick={() => navigate('aviso-privacidad')} className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100  cursor-pointer'>
@@ -44,21 +42,21 @@ function Footer() {
               </p>
             </div>
             <div className="mt-auto flex flex-row justify-between items-center">
-                <a href="https://www.linkedin.com/company/car-e-app/?viewAsMember=true" className="text-white text-3xl" target="_blank" rel="noreferrer">
-                  <i className="fa-brands fa-linkedin"></i>
-                </a>
-                <a href="https://www.facebook.com/profile.php?id=100094529103663" className="text-white text-3xl" target="_blank" rel="noreferrer">
-                  <i className="fa-brands fa-facebook"></i>
-                </a>
-                <a href="https://www.tiktok.com/@car.e.mobility?_t=8oVy3fgccMA&_r=1" className="text-white text-3xl" target="_blank" rel="noreferrer">
-                  <i className="fa-brands fa-tiktok"></i>
-                </a>
-                <a href="https://www.instagram.com/car.e.app?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="text-white text-3xl" target="_blank" rel="noreferrer">
-                  <i className="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://wa.link/k492al" className="text-white text-3xl" target="_blank" rel="noreferrer">
-                  <i className="fa-brands fa-whatsapp"></i>
-                </a>
+              <a href="https://www.linkedin.com/company/car-e-app/?viewAsMember=true" className="text-white text-3xl" target="_blank" rel="noreferrer">
+                <i className="fa-brands fa-linkedin"></i>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=100094529103663" className="text-white text-3xl" target="_blank" rel="noreferrer">
+                <i className="fa-brands fa-facebook"></i>
+              </a>
+              <a href="https://www.tiktok.com/@car.e.mobility?_t=8oVy3fgccMA&_r=1" className="text-white text-3xl" target="_blank" rel="noreferrer">
+                <i className="fa-brands fa-tiktok"></i>
+              </a>
+              <a href="https://www.instagram.com/car.e.app?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="text-white text-3xl" target="_blank" rel="noreferrer">
+                <i className="fa-brands fa-instagram"></i>
+              </a>
+              <a href="https://wa.link/k492al" className="text-white text-3xl" target="_blank" rel="noreferrer">
+                <i className="fa-brands fa-whatsapp"></i>
+              </a>
             </div>
           </div>
         </div>

@@ -1,6 +1,13 @@
-import CarELogo from '../../assets/images/logo-small.png'
+import CarELogo from '../../assets/images/logo-small.png';
+import { useState } from 'react';
 
 function NavBar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className="bg-white/90 backdrop-blur-md fixed w-full z-20 top-0 start-0 shadow-zinc-400/10 ease-in-out duration-300" id='NavBar'>
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2 px-12">
@@ -17,10 +24,11 @@ function NavBar() {
           </button>
           <button
             type="button"
-            aria-expanded="false"
+            aria-expanded={isMenuOpen}
             aria-controls="navbar-sticky"
             data-collapse-toggle="navbar-sticky"
             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            onClick={toggleMenu}
           >
             <span className="sr-only">Open main menu</span>
             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -28,7 +36,7 @@ function NavBar() {
             </svg>
           </button>
         </div>
-        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+        <div className={`${isMenuOpen ? 'block' : 'hidden'} items-center justify-between w-full md:flex md:w-auto md:order-1`} id="navbar-sticky">
           <ul className="flex flex-col md:flex-row space-y-3 md:space-y-0 items-center space-x-0 md:space-x-2">
             <li>
               <a href="#" className="block py-2 px-3 text-sm" aria-current="page">Inicio</a>
@@ -43,8 +51,7 @@ function NavBar() {
         </div>
       </div>
     </nav>
-
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;

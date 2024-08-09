@@ -35,7 +35,7 @@ function AdminPage() {
 
 
   return (
-    <div className="bg-zinc-200 pt-12">
+    <div className="md:bg-zinc-200 pt-12">
       <NavBar />
       <div className="p-14 flex flex-1">
         <div className="w-full bg-white p-8 rounded-lg space-y-10">

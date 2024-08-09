@@ -20,3 +20,24 @@
   display: inline-block;
   animation: scroll 40s linear infinite;
 }
+
+@media (max-width: 768px) {
+  .carousel-row {
+    animation-duration: 45s; /* Aumenta la velocidad para pantallas pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-row {
+    animation-duration: 50s; /* Aún más rápido en pantallas más pequeñas */
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

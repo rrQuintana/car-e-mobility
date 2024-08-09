@@ -8,6 +8,7 @@ import AddService from "../screens/admin/AddService"
 import Service from "../screens/service/Service"
 import EditService from "../screens/admin/EditService"
 import PrivacyPolicy from "../screens/home/PrivacyPolicy"
+import MissingPage from "../screens/MissingPage"
 
 function Router() {
   const user = localStorage.getItem('token')
@@ -24,6 +25,7 @@ function Router() {
         {user && <Route path="/admin/edit-service/:id" element={<EditService />}  /> }
         <Route path="/about" element={<About />}  />
         <Route path="/warranty" element={<Warranty />}  />
+        <Route path="*" element={<MissingPage />}  />
       </Routes>
     </BrowserRouter>
   )
