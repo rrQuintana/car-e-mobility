@@ -30,21 +30,18 @@ function Footer() {
           </div>
           <div className="flex flex-col">
             <p className='font-semibold text-white text-3xl mb-3'>Contacto</p>
-            <div className="space-y-3 pb-12">
-              <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100'>
-                <i className="fas fa-phone"></i>&nbsp;&nbsp;  55 1234 5678 <br />
-              </p>
-              <p className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100'>
+            <div className="space-y-3 pb-12 flex flex-col">
+              <a href="https://wa.link/k492al" target="_blank" className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100'>
+                <i className="fas fa-phone"></i>&nbsp;&nbsp;  +52 55 2543 3929 <br />
+              </a>
+              <a href="mailto:contacto@car-e-mobility.com" target='_blank' className='text-white duration-300 ease-in-out hover:underline hover:text-zinc-100'>
                 <i className="fas fa-envelope"></i>&nbsp;&nbsp;  contacto@car-e-mobility.com
-              </p>
-              <p className="text-white  duration-300 ease-in-out hover:underline hover:text-zinc-100">
+              </a>
+              <a href="https://www.linkedin.com/company/car-e-app" target='_blank' className="text-white  duration-300 ease-in-out hover:underline hover:text-zinc-100">
                 <i className="fa-brands fa-linkedin"></i>&nbsp;&nbsp;  Car-e Mobility
-              </p>
+              </a>
             </div>
             <div className="mt-auto flex flex-row justify-between items-center">
-              <a href="https://www.linkedin.com/company/car-e-app/?viewAsMember=true" className="text-white text-3xl" target="_blank" rel="noreferrer">
-                <i className="fa-brands fa-linkedin"></i>
-              </a>
               <a href="https://www.facebook.com/profile.php?id=100094529103663" className="text-white text-3xl" target="_blank" rel="noreferrer">
                 <i className="fa-brands fa-facebook"></i>
               </a>
