@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import CarELogo from '../../assets/images/logo-small.png';
 import { useState } from 'react';
 
@@ -39,13 +40,13 @@ function NavBar() {
         <div className={`${isMenuOpen ? 'block' : 'hidden'} items-center justify-between w-full md:flex md:w-auto md:order-1`} id="navbar-sticky">
           <ul className="flex flex-col md:flex-row space-y-3 md:space-y-0 items-center space-x-0 md:space-x-2">
             <li>
-              <a href="#" className="block py-2 px-3 text-sm" aria-current="page">Inicio</a>
+              <Link to='/' className="block py-2 px-3 text-sm" aria-current="page">Inicio</Link>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 text-sm" aria-current="page">Nosotros</a>
+              <Link to='/nosotros' className="block py-2 px-3 text-sm" aria-current="page">Nosotros</Link>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 text-sm" aria-current="page">Contacto</a>
+              <Link to='/contacto' className="block py-2 px-3 text-sm" aria-current="page">Contacto</Link>
             </li>
           </ul>
         </div>

@@ -17,6 +17,7 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}  />
+        <Route path="/nosotros" element={<About />}  />
         <Route path="/aviso-privacidad" element={<PrivacyPolicy />}  />
         <Route path="/services/:id" element={<Service />}  />
         <Route path="/login" element={<LoginPage />}  />

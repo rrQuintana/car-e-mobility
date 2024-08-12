@@ -1,6 +1,6 @@
 import CariImage from '../../../../assets/images/25.jpg'
 
-const Benefit = ({ title, description }) => {
+export const Benefit = ({ title, description }) => {
   return (
     <div className="flex flex-row w-full space-x-4 h-auto md:h-12 text-left">
       <div className="h-7 aspect-square bg-green-400 rounded-full flex justify-center items-center">
@@ -19,7 +19,7 @@ const Benefit = ({ title, description }) => {
 function Benefits() {
   return (
     <div className='min-h-screen bg-blue-50 flex flex-col justify-center items-center px-14 pt-10 space-y-10 md:space-y-auto'>
-      <div className="w-2/3 md:w-5/6 lg:w-2/3 flex flex-col justify-center items-center">
+      <div className="w-2/3 md:w-5/6 lg:w-2/3 flex flex-col flex-1 justify-center items-center">
         <h1 className="text-center text-blue-900 font-semibold">
           RAZONES
         </h1>
@@ -27,11 +27,11 @@ function Benefits() {
           Mantenimiento <br /> sin complicaciones
         </h2>
       </div>
-      <div className="w-full flex flex-row lg:space-x-12 pb-20 md:pb-0">
+      <div className="w-full flex flex-row lg:space-x-12 md:pb-0">
         <div className="hidden lg:flex lg:flex-1">
           <img src={CariImage} alt="Car" className="rounded-t-lg shadow-zinc-700/10 shadow-lg overflow-hidden h-full aspect-square object-cover origin-center" />
         </div>
-        <div className="flex flex-1 flex-col space-y-10 lg:space-y-0 my-auto text-center md:text-left">
+        <div className="flex flex-1 flex-col space-y-10 my-auto text-center md:text-left">
           <div className="space-y-3 md:space-y-5 lg:space-y-3">
             <h1 className="hidden md:block font-semibold text-5xl">
               En qué te podemos ayudar?
