@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL, listAll, deleteObject } from 'firebase/storage';
 import { storage } from '../../../../firebase';
 
-function FileUploadAndDisplay({ PREFIX }) {
+function FileUploadAndDisplay({ PREFIX, admin = true }) {
   const [files, setFiles] = useState([]);
   const [uploadQueue, setUploadQueue] = useState([]);
   const [uploading, setUploading] = useState(false); // Track if an upload is in progress
@@ -13,7 +13,6 @@ function FileUploadAndDisplay({ PREFIX }) {
     const selectedFiles = Array.from(e.target.files);
     if (selectedFiles.length + files.length > 5) {
       alert("Solo puedes subir un máximo de 5 archivos.");
-      return;
     }
     setUploadQueue(selectedFiles);
   };
@@ -87,35 +86,41 @@ function FileUploadAndDisplay({ PREFIX }) {
   }, [PREFIX]);
 
   return (
-    <div className="space-y-3 bg-zinc-50 flex flex-col w-full p-5 rounded-lg border border-zinc-200 shadow-md min-h-[1200px] mt-12 p-12">
-      <div className="mb-4 flex flex-col md:flex-row md:justify-between items-center">
-        <input
-          type="file"
-          multiple
-          onChange={handleFileChange}
-          className="mb-2"
-        />
-        <button
-          onClick={handleUpload}
-          disabled={uploadQueue.length === 0 || uploading || files.length >= 5}
-          className={`ml-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 ${uploading || files.length >= 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
-        >
-          Subir
-        </button>
-      </div>
+    <div className="mt-auto space-y-3 bg-zinc-50 flex flex-col rounded-lg border border-zinc-200 shadow-md px-8 py-3">
+      {
+        admin && (
+          <div className="mb-4 flex flex-col md:flex-row md:justify-between items-center">
+            <input
+              type="file"
+              multiple
+              onChange={handleFileChange}
+              className="mb-2"
+            />
+            <button
+              onClick={handleUpload}
+              disabled={uploadQueue.length === 0 || uploading || files.length >= 5}
+              className={`ml-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 ${uploading || files.length >= 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              Subir
+            </button>
+          </div>
+        )
+      }
 
-      {uploading && (
-        <div className="mb-4">
-          {uploadQueue.map((file, index) => (
-            <div key={index} className="mb-2 bg-blue-100 border border-blue-200 rounded p-3 flex items-center space-x-4">
-              <div className="flex-1">
-                <div className="bg-blue-200 h-2 rounded" style={{ width: `${uploadProgress[index]}%` }}></div>
+      {
+        uploading && (
+          <div className="mb-4">
+            {uploadQueue.map((file, index) => (
+              <div key={index} className="mb-2 bg-blue-100 border border-blue-200 rounded p-3 flex items-center space-x-4">
+                <div className="flex-1">
+                  <div className="bg-blue-200 h-2 rounded" style={{ width: `${uploadProgress[index]}%` }}></div>
+                </div>
+                <span className="text-blue-600 font-medium">{Math.round(uploadProgress[index])}% {file.name}</span>
               </div>
-              <span className="text-blue-600 font-medium">{Math.round(uploadProgress[index])}% {file.name}</span>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )
+      }
 
       <div className="mb-4 flex justify-center space-x-4">
         <button
@@ -140,20 +145,23 @@ function FileUploadAndDisplay({ PREFIX }) {
 
       <div>
         <h3 className="text-lg font-semibold mb-2">Archivos subidos</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="flex flex-row h-64 overflow-x-auto space-x-4">
           {files.length === 0 && <p>No hay archivos subidos.</p>}
-          {files.filter(file => 
-            view === 'all' || 
-            (view === 'images' && (file.name.endsWith('.jpg') || file.name.endsWith('.png') || file.name.endsWith('.jpeg'))) || 
+          {files.filter(file =>
+            view === 'all' ||
+            (view === 'images' && (file.name.endsWith('.jpg') || file.name.endsWith('.png') || file.name.endsWith('.jpeg'))) ||
             (view === 'pdfs' && file.name.endsWith('.pdf'))
           ).map((file, index) => (
-            <div key={index} className="border p-2 rounded shadow-sm bg-white relative">
-              <button
-                onClick={() => handleDelete(file.name)}
-                className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
-              >
-                Eliminar
-              </button>
+            <div key={index} className="border p-2 rounded shadow-sm bg-white relative w-48 flex-shrink-0">
+              {admin && (
+                <button
+                  onClick={() => handleDelete(file.name)}
+                  className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+                >
+                  Eliminar
+                </button>
+              )}
+
               {file.name.endsWith('.pdf') ? (
                 <div>
                   <a
@@ -162,12 +170,12 @@ function FileUploadAndDisplay({ PREFIX }) {
                     rel="noopener noreferrer"
                     className="block text-blue-500 underline mb-2"
                   >
-                    Descargar PDF: {file.name}
+                    Descargar
                   </a>
                   <iframe
                     src={file.url}
                     title={file.name}
-                    className="w-full h-64 border-0"
+                    className="w-full h-48 border-0"
                   ></iframe>
                 </div>
               ) : (
@@ -177,12 +185,12 @@ function FileUploadAndDisplay({ PREFIX }) {
                     download={file.name}
                     className="block text-blue-500 underline mb-2"
                   >
-                    Descargar Imagen: {file.name}
+                    Descargar
                   </a>
                   <img
                     src={file.url}
                     alt={file.name}
-                    className="w-full h-64 object-cover rounded"
+                    className="w-full h-48 object-cover rounded"
                   />
                 </div>
               )}
@@ -190,7 +198,8 @@ function FileUploadAndDisplay({ PREFIX }) {
           ))}
         </div>
       </div>
-    </div>
+
+    </div >
   );
 }
 
